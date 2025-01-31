@@ -13,8 +13,10 @@
   <script type="application/javascript"
     src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.26.3/babel.js"></script>
 
-  <link rel="stylesheet" href="https://early.webawesome.com/webawesome@3.0.0-alpha.9/dist/styles/webawesome.css" />
-  <link rel="stylesheet" href="https://early.webawesome.com/webawesome@3.0.0-alpha.9/dist/styles/native.css" />
+    <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"
+  >
 
 
 </head>
@@ -35,11 +37,11 @@
 
 
     // Create a function to wrap up your component
-    const App = () => (
-      <div class="wa-frame" style="max-inline-size: 20rem;">
+    function App (){ return  (
+      <main class="container-fluid">
         <Counter />
-      </div>
-    );
+      </main>
+    )};
 
     // Use the ReactDOM.render to show your component on the browser
     ReactDOM.render(<App />, document.getElementById('root'))
