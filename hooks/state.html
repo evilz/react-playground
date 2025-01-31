@@ -13,11 +13,18 @@
   <script type="application/javascript"
     src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.26.3/babel.js"></script>
 
-    <link
-    rel="stylesheet"
-    href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"
-  >
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
 
+  <style>
+  .center {
+    position: fixed;
+    inset: 0px;
+    width: 12rem;
+    height: 5rem;
+    max-width: 100vw;
+    max-height: 100dvh;
+    margin: auto;
+  }</style>
 
 </head>
 
@@ -28,20 +35,30 @@
 
     // Create a ES6 class component    
 
-    const Counter = () =>  (
-        <div>
-          <p>Count: </p>
-          <button >increase</button>
+    const Counter = () => {
+
+
+      const [count, setCount] = React.useState(0);
+
+      const increase = () => setCount((prev) => prev + 1)
+
+      return (
+        <div class="center">
+          <p>Count: {count}</p>
+          <button onClick={increase}>increase</button>
         </div>
-      );
+      )
+    };
 
 
     // Create a function to wrap up your component
-    function App (){ return  (
-      <main class="container-fluid">
-        <Counter />
-      </main>
-    )};
+    function App() {
+      return (
+        <main class="container-fluid">
+          <Counter />
+        </main>
+      )
+    };
 
     // Use the ReactDOM.render to show your component on the browser
     ReactDOM.render(<App />, document.getElementById('root'))
