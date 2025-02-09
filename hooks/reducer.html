@@ -51,9 +51,9 @@ const ReducerExample = () => {
   return (
     <div>
       <p>Count: {state.count}</p>
-      <button onClick={() => React.dispatch({ type: "sad" })}>+</button>
-      <button onClick={() => React.dispatch({ type: "decrement" })}>-</button>
-      <button onClick={() => React.dispatch({ type: "double" })}>*</button>
+      <button onClick={() => dispatch({ type: "sad" })}>+</button>
+      <button onClick={() => dispatch({ type: "decrement" })}>-</button>
+      <button onClick={() => dispatch({ type: "double" })}>*</button>
     </div>
   );
 };
