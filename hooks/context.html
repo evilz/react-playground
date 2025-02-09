@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>React Local</title>
+  <!-- Import the React, React-Dom and Babel libraries from unpkg -->
+  <script type="application/javascript" src="https://unpkg.com/react@18.3.1/umd/react.production.min.js"></script>
+  <script type="application/javascript"
+    src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js"></script>
+  <script type="application/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.26.3/babel.js"></script>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+
+  <style>
+  .center {
+    position: fixed;
+    inset: 0px;
+    width: 12rem;
+    height: 5rem;
+    max-width: 100vw;
+    max-height: 100dvh;
+    margin: auto;
+  }</style>
+
+</head>
+
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel">
+
+const GlobalStateContext = React.createContext(null);
+
+export const ContextExample = () => {
+  const [isToggle, setIsToggle] = React.useState(false);
+
+  return (
+    <GlobalStateContext.Provider value={{ isToggle, setIsToggle }}>
+      <div>
+        <h1>Parent Component</h1>
+        <ChildToggle />
+        <ChildDisplay />
+      </div>
+    </GlobalStateContext.Provider>
+  );
+};
+
+const ChildToggle = () => {
+  const { setIsToggle } = React.useContext(GlobalStateContext);
+  return (
+    <div>
+      <button onClick={() => setIsToggle((prev) => !prev)}>Toggle State</button>
+    </div>
+  );
+};
+
+// Child Component to Display State
+const ChildDisplay = () => {
+  const { isToggle } = React.useContext(GlobalStateContext);
+
+  return (
+    <div>
+      <p>Current State: {isToggle ? "ON" : "OFF"}</p>
+    </div>
+  );
+};
+  
+
+  
+
+
+    // Create a function to wrap up your component
+    function App() {
+      return (
+        <main class="container-fluid">
+          <ContextExample  />
+        </main>
+      )
+    };
+
+    // Use the ReactDOM.render to show your component on the browser
+    ReactDOM.render(<App />, document.getElementById('root'))
+
+  </script>
+</body>
+
+</html>
+

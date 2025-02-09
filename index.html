@@ -7,81 +7,24 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>React Local</title>
 <!-- Import the React, React-Dom and Babel libraries from unpkg -->
-  <script type="application/javascript" src="https://unpkg.com/react@16.0.0/umd/react.production.min.js"></script>
-  <script type="application/javascript" src="https://unpkg.com/react-dom@16.0.0/umd/react-dom.production.min.js"></script>
-  <script type="application/javascript" src="https://unpkg.com/babel-standalone@6.26.0/babel.js"></script>
+<script type="application/javascript" src="https://unpkg.com/react@18.3.1/umd/react.production.min.js"></script>
+<script type="application/javascript"
+  src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js"></script>
+<script type="application/javascript"
+  src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.26.3/babel.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
 </head>
 
 <body>
-  <div id="root"></div>
+  <div id="root">
 
-  <script type="text/babel">
-
-// Obtain the root 
-
-const rootElement = document.getElementById('root')
-
-// Create a ES6 class component    
-
-    class ShoppingList extends React.Component { 
-
-// Use the render function to return JSX component      
-
-    render() { 
-
-        return (
-
-        <div className="shopping-list">
-
-        <h1>Shopping List for {this.props.name}</h1>
-
-          <ul>
-
-            <li>Instagram</li>
-
-            <li>WhatsApp</li>
-
-            <li>Oculus</li>
-
-          </ul>
-
-        </div>
-
-      );
-
-      } 
-
-    }
-
-// Create a function to wrap up your component
-
-function App(){
-
-  return(
-
-  <div>
-
-    <ShoppingList name="@luispagarcia on Dev.to!"/>
-
+    <h1>Hooks</h1>
+    <a href="/hooks/state.html">State</a>
+    <a href="/hooks/effect.html">Effect</a>
+    <a href="/hooks/context.html">Context</a>
   </div>
 
-  )
-
-}
-
-
-
-// Use the ReactDOM.render to show your component on the browser
-
-    ReactDOM.render(
-
-      <App />,
-
-      rootElement
-
-    )
-
-  </script>
   
   
 
