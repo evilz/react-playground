@@ -33,43 +33,30 @@
 
   <script type="text/babel">
 
-const GlobalStateContext = React.createContext(null);
-
-const ContextExample = () => {
-  const [isToggle, setIsToggle] = React.useState(false);
-
-  return (
-    <GlobalStateContext.Provider value={{ isToggle, setIsToggle }}>
-      <div>
-        <h1>Parent Component</h1>
-        <ChildToggle />
-        <ChildDisplay />
-      </div>
-    </GlobalStateContext.Provider>
-  );
+const reducer = (state, action) => {
+  switch (action.type) {
+    case "increment":
+      return { count: state.count + 1 };
+    case "decrement":
+      return { count: state.count - 1 };
+    case "double":
+      return { count: state.count * 2 };
+    default:
+      console.log("No action type");
+  }
 };
-
-const ChildToggle = () => {
-  const { setIsToggle } = React.useContext(GlobalStateContext);
-  return (
-    <div>
-      <button onClick={() => setIsToggle((prev) => !prev)}>Toggle State</button>
-    </div>
-  );
-};
-
-// Child Component to Display State
-const ChildDisplay = () => {
-  const { isToggle } = React.useContext(GlobalStateContext);
+const ReducerExample = () => {
+  const [state, dispatch] = React.useReducer(reducer, { count: 0 });
 
   return (
     <div>
-      <p>Current State: {isToggle ? "ON" : "OFF"}</p>
+      <p>Count: {state.count}</p>
+      <button onClick={() => React.dispatch({ type: "sad" })}>+</button>
+      <button onClick={() => React.dispatch({ type: "decrement" })}>-</button>
+      <button onClick={() => React.dispatch({ type: "double" })}>*</button>
     </div>
   );
 };
-  
-
   
 
 
@@ -77,7 +64,7 @@ const ChildDisplay = () => {
     function App() {
       return (
         <main class="container-fluid">
-          <ContextExample  />
+          <ReducerExample  />
         </main>
       )
     };
