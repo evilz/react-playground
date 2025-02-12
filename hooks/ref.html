@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>React Local</title>
+  <!-- Import the React, React-Dom and Babel libraries from unpkg -->
+  <script type="application/javascript" src="https://unpkg.com/react@18.3.1/umd/react.production.min.js"></script>
+  <script type="application/javascript"
+    src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js"></script>
+  <script type="application/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.26.3/babel.js"></script>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+
+  <style>
+  #root {
+    position: fixed;
+    inset: 0px;
+    width: 12rem;
+    height: 5rem;
+    max-width: 100vw;
+    max-height: 100dvh;
+    margin: auto;
+  }</style>
+
+</head>
+
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel">
+
+const RefExample  = () => {
+  {
+  const [count, setCount] = React.useState(0);
+  const previousCount = React.useRef(0);
+
+  React.useEffect(() => {
+    previousCount.current = count;
+  }, [count]);
+
+  return (
+    <>
+      <p> Count: {count}</p>
+      <p> Previous Count: {previousCount.current} </p>
+      <button onClick={() => setCount((prev) => prev + 1)}> Increment</button>
+    </>
+  );
+};
+
+
+
+    // Create a function to wrap up your component
+    function App() {
+      return (
+        <main class="container-fluid">
+          <RefExample  />
+        </main>
+      )
+    };
+
+    // Use the ReactDOM.render to show your component on the browser
+    ReactDOM.render(<App />, document.getElementById('root'))
+
+  </script>
+</body>
+
+</html>
+
