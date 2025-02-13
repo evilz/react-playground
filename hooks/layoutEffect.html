@@ -47,12 +47,14 @@ const LayoutEffectExample = () => {
   return (
     <div>
       <div
+        
         ref={boxRef}
         style={{
           width: "50%",
           height: "100px",
           backgroundColor: "lightblue",
           color: "black",
+          resize: both
         }}
       >
         Resize me!
