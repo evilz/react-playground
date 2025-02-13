@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>React Local</title>
+  <!-- Import the React, React-Dom and Babel libraries from unpkg -->
+  <script type="application/javascript" src="https://unpkg.com/react@18.3.1/umd/react.production.min.js"></script>
+  <script type="application/javascript"
+    src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js"></script>
+  <script type="application/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.26.3/babel.js"></script>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+
+  <style>
+  #root {
+    position: fixed;
+    inset: 0px;
+    width: 12rem;
+    height: 5rem;
+    max-width: 100vw;
+    max-height: 100dvh;
+    margin: auto;
+  }</style>
+
+</head>
+
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel">
+
+const TransitionExample = () => {
+  const [query, setQuery] = React.useState("");
+  const [filteredItems, setFilteredItems] = React.useState([]);
+  const [isPending, startTransition] = React.useTransition();
+
+  const items = Array.from({ length: 10000 }, (_, i) => `Item ${i + 1}`);
+
+  const handleFilter = (e) => {
+    const value = e.target.value;
+    setQuery(value);
+
+    startTransition(() => {
+      const filtered = items.filter((item) =>
+        item.toLowerCase().includes(value.toLowerCase())
+      );
+      setFilteredItems(filtered);
+    });
+  };
+
+  return (
+    <div>
+      <input
+        type="text"
+        value={query}
+        onChange={handleFilter}
+        placeholder="Search items..."
+      />
+
+      {isPending && <p> Loading...</p>}
+
+      <ul>
+        {filteredItems.map((item, index) => (
+          <li key={index}>{item}</li>
+        ))}
+      </ul>
+    </div>
+  );
+};
+
+    // Create a function to wrap up your component
+    function App() {
+      return (
+        <main class="container-fluid">
+          <TransitionExample  />
+        </main>
+      )
+    };
+
+    // Use the ReactDOM.render to show your component on the browser
+    ReactDOM.render(<App />, document.getElementById('root'))
+
+  </script>
+</body>
+
+</html>
+
